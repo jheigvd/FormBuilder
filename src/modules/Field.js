@@ -1,5 +1,6 @@
 // Exportation nommée
 export class Field {
+  // créer input
   #inputElement = document.createElement("input");
 
   constructor(options) {
@@ -9,19 +10,17 @@ export class Field {
   }
 
   render() {
-    const labelElement = document.createElement("label");
-    labelElement.innerText = this.label;
-
+    const div = document.createElement("div");
+    div.classList.add("field-container");
+    const label = document.createElement("label");
+    label.innerText = this.label;
+    // Assignez les propriétés d’instance type et name aux attributs correspondants de l’élément #inputElement .
     this.#inputElement.name = this.name;
     this.#inputElement.type = this.type;
+    div.append(label);
+    div.append(this.#inputElement);
 
-    const fieldContainer = document.createElement("div");
-    fieldContainer.classList.add("field-container");
-
-    fieldContainer.append(labelElement);
-    fieldContainer.append(this.#inputElement);
-
-    return fieldContainer;
+    return div;
   }
 
   get value() {
